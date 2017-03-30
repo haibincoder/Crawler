@@ -18,10 +18,17 @@ public class TestJsoup {
 
             Elements hotNews = document.select("li");
 
+            for (Element hotNew : hotNews) {
+                boolean temp = hotNews.hasAttr("a");
+                System.out.print(temp + "\n");
+            }
+
             Elements test = hotNews.select("a");
 
+            String empty = test.first().attr("title");
+
             for (Element element : test) {
-                System.out.printf(element.attr("href"));
+                System.out.printf(element.attr("title") + "\n");
             }
             //System.out.printf(test.first().attr("href"));
 

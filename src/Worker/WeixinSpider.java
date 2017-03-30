@@ -19,16 +19,13 @@ public class WeixinSpider {
             //提取热点新闻
             Elements hotNews = document.getElementsByAttributeValue("id","topwords");
 
-            //提取热点新闻链接
-            //Elements hotNewsLink = document.getElement
-
             //分割空格
             ArrayList<String> arrayList = Parser.ParserBlank(hotNews.text());
 
             //保存到数据库
-            /*if(Utils.InsertHotNews(arrayList)){
+            if(Utils.InsertHotNews(arrayList)){
                 System.out.println("添加到数据库！");
-            }*/
+            }
             //遍历热点新闻
             for (String string : arrayList){
                 System.out.println(string);
