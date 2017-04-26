@@ -25,7 +25,9 @@ public class WeiboCrawler extends BreadthCrawler {
     public WeiboCrawler(String crawlPath, boolean autoParse) throws Exception {
         super(crawlPath, autoParse);
         /*获取新浪微博的cookie，账号密码以明文形式传输，请使用小号*/
-        cookie = WeiboCN.getSinaCookie("17628286818", "haibinde");
+        //2017.4.26 weibo.cn更改登录方式，暂时指定cookie登陆。
+        //cookie = WeiboCN.getSinaCookie("17628286818", "haibinde");
+        cookie = "Aq5sxSUSDZRcyy2HcFhSUkdjKwsbpZ4ZFa6s_V29NzWY5hCPaZ_MrESuqWv2BHrec0WkifPMNKibuUjTkYpBimM";
         System.out.println(cookie);
     }
 
@@ -40,21 +42,27 @@ public class WeiboCrawler extends BreadthCrawler {
         int pageNum = Integer.valueOf(page.meta("pageNum"));
         /*抽取微博*/
         Elements weibos = page.select("div.c");
+
         ArrayList<WeiboContent> arrayList = new ArrayList<WeiboContent>();
 
         //System.out.println("-------------测试数据：" + weibos.size() + "-------------");
 
         for (Element weibo : weibos) {
+            Elements content = weibo.select("span.ctt");
+
             System.out.println("第" + pageNum + "页\t" + weibo.text());
             WeiboContent weiboContent = new WeiboContent();
 
             //将emoji表情转换为*
-           weiboContent.setContent(filterEmoji(weibo.text()));
+            if(content.text().length() > 1) {
+                weiboContent.setContent(filterEmoji(content.text()));
 
-            System.out.println("-------------href：" + weibo.select("a").eq(2).attr("href") + "-------------");
-            weiboContent.setLink(weibo.select("a").eq(2).attr("href"));
+                //System.out.println("-------------href：" + weibo.select("a").eq(2).attr("href") + "-------------");
+                weiboContent.setLink(weibo.select("a").eq(2).attr("href"));
+                System.out.println("--------content：" + content.text());
 
-            arrayList.add(weiboContent);
+                arrayList.add(weiboContent);
+            }
         }
 
         if(InsertWeibo(arrayList)){
@@ -67,12 +75,35 @@ public class WeiboCrawler extends BreadthCrawler {
         crawler.setThreads(3);
         /*对某人微博前2页进行爬取*/
         for (int i = 1; i <= 2; i++) {
-            crawler.addSeed(new CrawlDatum("http://weibo.cn/2665749913?vt=4&page=" + i)
-                    .meta("pageNum", i + ""));
-            crawler.addSeed(new CrawlDatum("http://weibo.cn/perry28pp?vt=4&page=" + i)
-                    .meta("pageNum", i + ""));
-            crawler.addSeed(new CrawlDatum("http://weibo.cn/maboyong?vt=4&page=" + i)
-                    .meta("pageNum", i + ""));
+//            crawler.addSeed(new CrawlDatum("http://weibo.cn/2665749913?vt=4&page=" + i)
+//                    .meta("pageNum", i + ""));
+//            System.out.println("---------------finish -> 2665749913--------------------");
+//
+//            crawler.addSeed(new CrawlDatum("http://weibo.cn/perry28pp?vt=4&page=" + i)
+//                    .meta("pageNum", i + ""));
+//            System.out.println("---------------finish -> perry28pp--------------------");
+//
+//            crawler.addSeed(new CrawlDatum("http://weibo.cn/maboyong?vt=4&page=" + i)
+//                    .meta("pageNum", i + ""));
+//            System.out.println("---------------finish -> maboyong--------------------");
+//
+//            crawler.addSeed(new CrawlDatum("http://weibo.cn/1618051664?vt=4&page=" + i)
+//                    .meta("pageNum", i + ""));
+//            System.out.println("---------------finish -> 1618051664--------------------");
+//
+//            crawler.addSeed(new CrawlDatum("http://weibo.cn/1314608344?vt=4&page=" + i)
+//                    .meta("pageNum", i + ""));
+//            System.out.println("---------------finish -> 1314608344--------------------");
+//
+//            crawler.addSeed(new CrawlDatum("http://weibo.cn/1314608344?vt=4&page=" + i)
+//                    .meta("pageNum", i + ""));
+//            System.out.println("---------------finish -> 1314608344--------------------");
+//
+//            crawler.addSeed(new CrawlDatum("http://weibo.cn/sinapapers?vt=4&page=" + i)
+//                    .meta("pageNum", i + ""));
+//            System.out.println("---------------finish -> sinapapers--------------------");
+            crawler.addSeed(new CrawlDatum("http://weibo.cn/breakingnews?vt=4&page=" + i)
+                   .meta("pageNum", i + ""));
         }
         crawler.start(1);
     }

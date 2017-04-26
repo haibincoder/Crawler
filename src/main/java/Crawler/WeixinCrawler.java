@@ -32,12 +32,13 @@ public class WeixinCrawler {
             }
 
             //提取推荐新闻
-            Elements newsLinks = document.getElementsByClass("news-list");
+            //Elements newsLinks = document.getElementsByClass("news-list");
+            Elements newsLinks = document.select("div.txt-box");
             String news;
 
             //遍历推荐新闻
             for (Element element : newsLinks){
-                news = element.select("h3").text();
+                news = element.text();
                 ArrayList<String> recommandNews = Parser.ParserBlank(news);
 
                 //添加到数据库
