@@ -73,37 +73,40 @@ public class WeiboCrawler extends BreadthCrawler {
     public static void main(String[] args) throws Exception {
         WeiboCrawler crawler = new WeiboCrawler("weibo_crawler", false);
         crawler.setThreads(3);
-        /*对某人微博前2页进行爬取*/
+        /*对某人微博第1页进行爬取*/
         for (int i = 1; i <= 2; i++) {
-//            crawler.addSeed(new CrawlDatum("http://weibo.cn/2665749913?vt=4&page=" + i)
-//                    .meta("pageNum", i + ""));
-//            System.out.println("---------------finish -> 2665749913--------------------");
-//
-//            crawler.addSeed(new CrawlDatum("http://weibo.cn/perry28pp?vt=4&page=" + i)
-//                    .meta("pageNum", i + ""));
-//            System.out.println("---------------finish -> perry28pp--------------------");
-//
-//            crawler.addSeed(new CrawlDatum("http://weibo.cn/maboyong?vt=4&page=" + i)
-//                    .meta("pageNum", i + ""));
-//            System.out.println("---------------finish -> maboyong--------------------");
-//
-//            crawler.addSeed(new CrawlDatum("http://weibo.cn/1618051664?vt=4&page=" + i)
-//                    .meta("pageNum", i + ""));
-//            System.out.println("---------------finish -> 1618051664--------------------");
-//
-//            crawler.addSeed(new CrawlDatum("http://weibo.cn/1314608344?vt=4&page=" + i)
-//                    .meta("pageNum", i + ""));
-//            System.out.println("---------------finish -> 1314608344--------------------");
-//
-//            crawler.addSeed(new CrawlDatum("http://weibo.cn/1314608344?vt=4&page=" + i)
-//                    .meta("pageNum", i + ""));
-//            System.out.println("---------------finish -> 1314608344--------------------");
-//
-//            crawler.addSeed(new CrawlDatum("http://weibo.cn/sinapapers?vt=4&page=" + i)
-//                    .meta("pageNum", i + ""));
-//            System.out.println("---------------finish -> sinapapers--------------------");
+            crawler.addSeed(new CrawlDatum("http://weibo.cn/2665749913?vt=4&page=" + i)
+                    .meta("pageNum", i + ""));
+            System.out.println("---------------finish -> 2665749913--------------------");
+            Thread.sleep(3);
+
+            crawler.addSeed(new CrawlDatum("http://weibo.cn/perry28pp?vt=4&page=" + i)
+                    .meta("pageNum", i + ""));
+            System.out.println("---------------finish -> perry28pp--------------------");
+            Thread.sleep(3);
+
+            crawler.addSeed(new CrawlDatum("http://weibo.cn/1618051664?vt=4&page=" + i)
+                    .meta("pageNum", i + ""));
+            System.out.println("---------------finish -> 1618051664--------------------");
+
+            crawler.addSeed(new CrawlDatum("http://weibo.cn/1314608344?vt=4&page=" + i)
+                    .meta("pageNum", i + ""));
+            System.out.println("---------------finish -> 1314608344--------------------");
+            Thread.sleep(3);
+
+            crawler.addSeed(new CrawlDatum("http://weibo.cn/1314608344?vt=4&page=" + i)
+                    .meta("pageNum", i + ""));
+            System.out.println("---------------finish -> 1314608344--------------------");
+
+            crawler.addSeed(new CrawlDatum("http://weibo.cn/sinapapers?vt=4&page=" + i)
+                    .meta("pageNum", i + ""));
+            System.out.println("---------------finish -> sinapapers--------------------");
+            Thread.sleep(3);
+
             crawler.addSeed(new CrawlDatum("http://weibo.cn/breakingnews?vt=4&page=" + i)
                    .meta("pageNum", i + ""));
+            System.out.println("---------------finish -> breakingnews--------------------");
+            Thread.sleep(3);
         }
         crawler.start(1);
     }
