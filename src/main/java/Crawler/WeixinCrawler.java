@@ -1,7 +1,6 @@
 package Crawler;
 
 import Parser.Parser;
-import Utils.Utils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,6 +8,9 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static DAO.WeixinDAO.InsertHotNews;
+import static DAO.WeixinDAO.InsertRecommendNews;
 
 public class WeixinCrawler {
     public static void main(String []args){
@@ -23,7 +25,7 @@ public class WeixinCrawler {
             ArrayList<String> arrayList = Parser.ParserBlank(hotNews.text());
 
             //保存到数据库
-            if(Utils.InsertHotNews(arrayList)){
+            if(InsertHotNews(arrayList)){
                 System.out.println("添加到数据库！");
             }
             //遍历热点新闻
@@ -42,7 +44,7 @@ public class WeixinCrawler {
                 ArrayList<String> recommandNews = Parser.ParserBlank(news);
 
                 //添加到数据库
-                Utils.InsertRecommendNews(recommandNews);
+                InsertRecommendNews(recommandNews);
 
                 for(String string : recommandNews){
                     System.out.println(string);

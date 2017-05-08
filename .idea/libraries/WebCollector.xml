@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="WebCollector">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jar/WebCollector.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -12,8 +12,8 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 
-import static Parser.ChangeEmoji.filterEmoji;
-import static Utils.Utils.InsertWeibo;
+import static DAO.WeiboDAO.InsertWeibo;
+import static Parser.ConvertEmoji.filterEmoji;
 
 /**
  * 利用WebCollector和获取的cookie爬取新浪微博并抽取数据

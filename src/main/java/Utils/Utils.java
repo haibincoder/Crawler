@@ -15,6 +15,7 @@ public class Utils {
     /**
      * Created with haibin
      * 保存热点新闻
+     * useless
     **/
     public  static boolean InsertHotNews(ArrayList<String> arrayList){
         PreparedStatement ps = null;
@@ -44,6 +45,7 @@ public class Utils {
         }
     }
 
+    //useless
     public  static boolean InsertRecommendNews(ArrayList<String> arrayList){
         PreparedStatement ps = null;
         String insertSql = "INSERT INTO RecommendNews(news,datetime) VALUES(?,?)";
@@ -72,6 +74,7 @@ public class Utils {
         }
     }
 
+    //useless
     public  static boolean InsertWeibo(ArrayList<WeiboContent> arrayList){
         PreparedStatement ps = null;
         String insertSql = "INSERT INTO weibo(content,link) VALUES(?,?)";
