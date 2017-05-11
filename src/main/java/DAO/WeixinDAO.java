@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class WeixinDAO {
 
-    public static Connection conn = DBConn.getConnection();
+    public static Connection conn = DBConn.GetConnection();
     private static SimpleDateFormat simpleDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     /**

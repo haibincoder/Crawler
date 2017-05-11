@@ -10,14 +10,19 @@ import java.util.Date;
 public class Utils {
     private static SimpleDateFormat simpleDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd");
     //private static final Logger Log = Logger.getLogger(Utils.class.getName());
-    public static Connection conn = DBConn.getConnection();
+    public static Connection conn = DBConn.GetConnection();
+
+    public static String GetDate(){
+        String date = simpleDateTimeFormat.format(new Date());
+        return date;
+    }
 
     /**
      * Created with haibin
      * 保存热点新闻
      * useless
     **/
-    public  static boolean InsertHotNews(ArrayList<String> arrayList){
+    public static boolean InsertHotNews(ArrayList<String> arrayList){
         PreparedStatement ps = null;
         String insertSql = "INSERT INTO weixin_hotnews(news,datetime) VALUES(?,?)";
         String date = simpleDateTimeFormat.format(new Date());

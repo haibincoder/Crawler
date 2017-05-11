@@ -16,12 +16,12 @@ import java.util.Date;
  */
 public class WeiboDAO {
 
-    public static Connection conn = DBConn.getConnection();
+    public static Connection conn = DBConn.GetConnection();
     private static SimpleDateFormat simpleDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public static boolean InsertWeibo(ArrayList<WeiboContent> arrayList) {
         PreparedStatement ps = null;
-        String insertSql = "INSERT INTO weibo(content,link) VALUES(?,?)";
+        String insertSql = "INSERT INTO weibo(content,link,datetime) VALUES(?,?,?)";
         String date = simpleDateTimeFormat.format(new Date());
 
         try {
@@ -33,6 +33,7 @@ public class WeiboDAO {
             for (WeiboContent s : arrayList) {
                 ps.setString(1, s.getContent());
                 ps.setString(2, s.getLink());
+                ps.setString(3,date);
                 ps.addBatch();
             }
             ps.executeBatch();

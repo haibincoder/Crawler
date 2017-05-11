@@ -12,7 +12,7 @@ public class DBConn {
         public static final String USERNAME = "root";
         public static final String PASSWORD = "root";
 
-        public static Connection getConnection(){
+        public static Connection GetConnection(){
             Connection conn = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
