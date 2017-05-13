@@ -1,6 +1,7 @@
 package Crawler;
 
 import Model.WeiboContent;
+import Model.WeiboUserList;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
 import cn.edu.hfut.dmic.webcollector.model.Page;
@@ -27,7 +28,7 @@ public class WeiboCrawler extends BreadthCrawler {
         /*获取新浪微博的cookie，账号密码以明文形式传输，请使用小号*/
         //2017.4.26 weibo.cn更改登录方式，暂时指定cookie登陆。
         //cookie = WeiboCN.getSinaCookie("17628286818", "haibinde");
-        cookie = "Aq5sxSUSDZRcyy2HcFhSUkdjKwsbpZ4ZFa6s_V29NzWY5hCPaZ_MrESuqWv2BHrec0WkifPMNKibuUjTkYpBimM";
+        cookie = "AkKyaHLZu3dpi145vSNY5OM73T9bRbcSfwSoFsWNNWMkHSMnH6Q8GHNj7IwgUuAS2_-6RU8aVvXW2gQJJoQoGVI.";
         System.out.println(cookie);
     }
 
@@ -72,43 +73,23 @@ public class WeiboCrawler extends BreadthCrawler {
 
     public static void main(String[] args) throws Exception {
         WeiboCrawler crawler = new WeiboCrawler("weibo_crawler", false);
-        crawler.setThreads(3);
-        /*对某人微博第1页进行爬取*/
-        for (int i = 1; i <= 2; i++) {
-            crawler.addSeed(new CrawlDatum("http://weibo.cn/2665749913?vt=4&page=" + i)
-                    .meta("pageNum", i + ""));
-            System.out.println("---------------finish -> 2665749913--------------------");
-            Thread.sleep(3);
-
-            crawler.addSeed(new CrawlDatum("http://weibo.cn/perry28pp?vt=4&page=" + i)
-                    .meta("pageNum", i + ""));
-            System.out.println("---------------finish -> perry28pp--------------------");
-            Thread.sleep(3);
-
-            crawler.addSeed(new CrawlDatum("http://weibo.cn/1618051664?vt=4&page=" + i)
-                    .meta("pageNum", i + ""));
-            System.out.println("---------------finish -> 1618051664--------------------");
-
-            crawler.addSeed(new CrawlDatum("http://weibo.cn/1314608344?vt=4&page=" + i)
-                    .meta("pageNum", i + ""));
-            System.out.println("---------------finish -> 1314608344--------------------");
-            Thread.sleep(3);
-
-            crawler.addSeed(new CrawlDatum("http://weibo.cn/1314608344?vt=4&page=" + i)
-                    .meta("pageNum", i + ""));
-            System.out.println("---------------finish -> 1314608344--------------------");
-
-            crawler.addSeed(new CrawlDatum("http://weibo.cn/sinapapers?vt=4&page=" + i)
-                    .meta("pageNum", i + ""));
-            System.out.println("---------------finish -> sinapapers--------------------");
-            Thread.sleep(3);
-
-            crawler.addSeed(new CrawlDatum("http://weibo.cn/breakingnews?vt=4&page=" + i)
-                   .meta("pageNum", i + ""));
-            System.out.println("---------------finish -> breakingnews--------------------");
+        crawler.setThreads(2);
+//        /*对某人微博第1页进行爬取*/
+//        for (int i = 1; i <= 2; i++) {
+//            crawler.addSeed(new CrawlDatum("http://weibo.cn/2665749913?vt=4&page=" + i)
+//                    .meta("pageNum", i + ""));
+//            System.out.println("---------------finish -> 2665749913--------------------");
+//            Thread.sleep(3);
+//        }
+        WeiboUserList weiboUserList = new WeiboUserList();
+        weiboUserList.setArrayList();
+        ArrayList<String> arrayList = weiboUserList.getArrayList();
+        for(String s : arrayList){
+            crawler.addSeed(new CrawlDatum("http://weibo.cn/" + s + "?vt=4&page=" + 1)
+                   .meta("pageNum", 1 + ""));
+            System.out.println("---------------finish -> " + s +"--------------------");
             Thread.sleep(3);
         }
         crawler.start(1);
     }
-
 }

@@ -10,6 +10,7 @@ public class HotNews {
     private SimpleDateFormat dateTime = new SimpleDateFormat("yyyy-MM-dd");
     private String contents;
     private String link;
+    private String source;
     private SimpleDateFormat publishDateTime = new SimpleDateFormat("yyyy-MM-dd");
 
     public String getNews(){
@@ -49,5 +50,13 @@ public class HotNews {
 
     public void setPublishDateTime(SimpleDateFormat publishDateTime) {
         this.publishDateTime = publishDateTime;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }

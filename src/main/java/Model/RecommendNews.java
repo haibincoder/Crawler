@@ -6,7 +6,8 @@ public class RecommendNews {
     private String news;
     private SimpleDateFormat dateTime = new SimpleDateFormat("yyyy-MM-dd");
     private String contents;
-    private String linik;
+    private String link;
+    private String source;
     private SimpleDateFormat publishTime = new SimpleDateFormat("yyyy-MM-dd");
 
     public String getNews() {
@@ -33,12 +34,12 @@ public class RecommendNews {
         this.contents = contents;
     }
 
-    public String getLinik() {
-        return linik;
+    public String getLink() {
+        return link;
     }
 
-    public void setLinik(String linik) {
-        this.linik = linik;
+    public void setLink(String linik) {
+        this.link = linik;
     }
 
     public SimpleDateFormat getPublishTime() {
@@ -47,5 +48,13 @@ public class RecommendNews {
 
     public void setPublishTime(SimpleDateFormat publishTime) {
         this.publishTime = publishTime;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 }

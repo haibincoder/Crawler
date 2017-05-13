@@ -1,5 +1,7 @@
 package DAO;
 
+import Model.HotNews;
+import Model.RecommendNews;
 import Utils.DBConn;
 
 import java.sql.Connection;
@@ -20,9 +22,9 @@ public class WeixinDAO {
      * Created with haibin
      * 保存热点新闻
      **/
-    public  static boolean InsertHotNews(ArrayList<String> arrayList){
+    public  static boolean InsertHotNews(ArrayList<HotNews> arrayList){
         PreparedStatement ps = null;
-        String insertSql = "INSERT INTO weixin_hotnews(news,datetime) VALUES(?,?)";
+        String insertSql = "INSERT INTO weixin_hotnews(news,link,datetime) VALUES(?,?,?)";
         String date = simpleDateTimeFormat.format(new Date());
 
         try{
@@ -31,9 +33,10 @@ public class WeixinDAO {
 
             ps = conn.prepareStatement(insertSql);
             //rs = st.executeQuery(insertSql);
-            for(String s : arrayList){
-                ps.setString(1,s);
-                ps.setString(2,date);
+            for(HotNews s : arrayList){
+                ps.setString(1,s.getNews());
+                ps.setString(2,s.getLink());
+                ps.setString(3,date);
                 ps.addBatch();
             }
             ps.executeBatch();
@@ -52,9 +55,9 @@ public class WeixinDAO {
      * Created with haibin
      * 保存推荐新闻
      **/
-    public  static boolean InsertRecommendNews(ArrayList<String> arrayList){
+    public  static boolean InsertRecommendNews(ArrayList<RecommendNews> arrayList){
         PreparedStatement ps = null;
-        String insertSql = "INSERT INTO RecommendNews(news,datetime) VALUES(?,?)";
+        String insertSql = "INSERT INTO weixin_recommendnews(news,datetime,link,content,source) VALUES(?,?,?,?,?)";
         String date = simpleDateTimeFormat.format(new Date());
 
         try{
@@ -63,9 +66,12 @@ public class WeixinDAO {
 
             ps = conn.prepareStatement(insertSql);
             //rs = st.executeQuery(insertSql);
-            for(String s : arrayList){
-                ps.setString(1,s);
+            for(RecommendNews s : arrayList){
+                ps.setString(1,s.getNews());
                 ps.setString(2,date);
+                ps.setString(3,s.getLink());
+                ps.setString(4,s.getContents());
+                ps.setString(5,s.getSource());
                 ps.addBatch();
             }
             ps.executeBatch();

@@ -25,3 +25,4 @@ public class WeiboUser {
         this.nickName = userId;
     }
 }
+
