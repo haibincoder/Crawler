@@ -12,6 +12,7 @@ public class HotNews {
     private String link;
     private String source;
     private SimpleDateFormat publishDateTime = new SimpleDateFormat("yyyy-MM-dd");
+    private String width;
 
     public String getNews(){
         return news;
@@ -58,5 +59,13 @@ public class HotNews {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public String getWidth() {
+        return width;
+    }
+
+    public void setWidth(String width) {
+        this.width = width;
     }
 }

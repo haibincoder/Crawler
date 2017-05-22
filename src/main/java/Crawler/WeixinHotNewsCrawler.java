@@ -10,6 +10,8 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static DAO.WeixinDAO.InsertHotNews;
 import static DAO.WeixinDAO.InsertRecommendNews;
@@ -30,15 +32,23 @@ public class WeixinHotNewsCrawler {
                 hotNews.setNews(item.select("a").attr("title"));
                 hotNews.setLink(item.select("a").attr("href"));
 
+                //获取新闻热度
+                String style = item.select("span span").attr("style");
+                String regEx="[^0-9]";
+                Pattern p = Pattern.compile(regEx);
+                Matcher m = p.matcher(style);
+                hotNews.setWidth(m.replaceAll("").trim());
+
                 System.out.println(hotNews.getNews());
                 System.out.println(hotNews.getLink());
+                System.out.println(hotNews.getWidth());
 
                 hotNewsList.add(hotNews);
             }
 
             //保存到数据库
             if(InsertHotNews(hotNewsList)){
-                System.out.println("添加到数据库！");
+                System.out.println("添加到数据库成功！");
             }
             //遍历热点新闻
             for (HotNews item : hotNewsList){

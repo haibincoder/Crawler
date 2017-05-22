@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static Utils.Utils.GetDate;
+
 /**
  * Created by bin on 2017/5/3.
  */
@@ -51,7 +53,7 @@ public class WeiboDAO {
         ArrayList<WeiboContent> arrayList = new ArrayList<WeiboContent>();
         try {
             Statement statement = conn.createStatement();
-            String sql = "SELECT * FROM weibo";
+            String sql = "SELECT * FROM weibo WHERE datetime = '" + GetDate() +"'";
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()){

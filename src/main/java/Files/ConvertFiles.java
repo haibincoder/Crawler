@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 import static DAO.WeiboDAO.SelectWeibo;
+import static Utils.Utils.GetDate;
 
 /**
  * Created by bin on 2017/5/4.
@@ -13,10 +14,11 @@ import static DAO.WeiboDAO.SelectWeibo;
 public class ConvertFiles {
     public static void main(String[] args) {
         FileOutputStream  out = null;
+        //获取微博数据
         ArrayList<WeiboContent> arrayList = SelectWeibo();
 
         try{
-            out=new FileOutputStream("d:/temp/weibo.txt");
+            out=new FileOutputStream("d:/temp/" + GetDate()+ ".txt");
             for(WeiboContent weiboContent : arrayList){
                 //objectWriter.writeObject(weiboContent);
                 //out.write(weiboContent.getComment());

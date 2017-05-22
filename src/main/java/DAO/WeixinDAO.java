@@ -24,7 +24,7 @@ public class WeixinDAO {
      **/
     public  static boolean InsertHotNews(ArrayList<HotNews> arrayList){
         PreparedStatement ps = null;
-        String insertSql = "INSERT INTO weixin_hotnews(news,link,datetime) VALUES(?,?,?)";
+        String insertSql = "INSERT INTO weixin_hotnews(news,link,datetime,width) VALUES(?,?,?,?)";
         String date = simpleDateTimeFormat.format(new Date());
 
         try{
@@ -37,6 +37,7 @@ public class WeixinDAO {
                 ps.setString(1,s.getNews());
                 ps.setString(2,s.getLink());
                 ps.setString(3,date);
+                ps.setString(4,s.getWidth());
                 ps.addBatch();
             }
             ps.executeBatch();
