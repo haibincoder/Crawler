@@ -28,7 +28,7 @@ public class WeiboCrawler extends BreadthCrawler {
         /*获取新浪微博的cookie，账号密码以明文形式传输，请使用小号*/
         //2017.4.26 weibo.cn更改登录方式，暂时指定cookie登陆。
         //cookie = WeiboCN.getSinaCookie("17628286818", "haibinde");
-        cookie = "AkKyaHLZu3dpi145vSNY5OM73T9bRbcSfwSoFsWNNWMkHSMnH6Q8GHNj7IwgUuAS2_-6RU8aVvXW2gQJJoQoGVI.";
+        cookie = "AkKyaHLZu3dpi145vSNY5OM73T9bRbcSfwSoFsWNNWMkvZuGNcuRK1uM99BA6l_sBWJxz6GDW53LuXMvdni5Ffc.";
         System.out.println(cookie);
     }
 

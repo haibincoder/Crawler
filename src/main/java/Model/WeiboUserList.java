@@ -12,7 +12,7 @@ public class WeiboUserList{
         arrayList.add("1314608344");
         arrayList.add("sinapapers");
         arrayList.add("breakingnews");
-        arrayList.add("rmrb;"); //人民日报
+        arrayList.add("rmrb");            //人民日报
         arrayList.add("cctvxinwen");      //央视新闻
         arrayList.add("modernexpress");   //现代快报
         arrayList.add("gzdaily");          //广州日报
