@@ -1,11 +1,13 @@
 package Files;
 
 import Model.WeiboContent;
+import Model.WeixinContent;
 
 import java.io.*;
 import java.util.ArrayList;
 
 import static DAO.WeiboDAO.SelectWeibo;
+import static DAO.WeixinDAO.SelectWeixin;
 import static Utils.Utils.GetDate;
 
 /**
@@ -16,6 +18,7 @@ public class ConvertFiles {
         FileOutputStream  out = null;
         //获取微博数据
         ArrayList<WeiboContent> arrayList = SelectWeibo();
+        ArrayList<WeixinContent> weixinList = SelectWeixin();
 
         try{
             out=new FileOutputStream("d:/temp/" + GetDate()+ ".txt");

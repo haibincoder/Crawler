@@ -2,13 +2,19 @@ package DAO;
 
 import Model.HotNews;
 import Model.RecommendNews;
+import Model.WeiboContent;
+import Model.WeixinContent;
 import Utils.DBConn;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import static Utils.Utils.GetDate;
 
 /**
  * Created by bin on 2017/5/3.
@@ -45,8 +51,13 @@ public class WeixinDAO {
 
             return true;
 
-        } catch (Exception e){
-            e.printStackTrace();
+        }  catch (NullPointerException e) {
+            //e.printStackTrace();
+            System.out.println("连接数据库失败！");
+            return false;
+        }catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println("保存数据失败！");
             return false;
         } finally {
         }
@@ -80,10 +91,41 @@ public class WeixinDAO {
 
             return true;
 
-        } catch (Exception e){
-            e.printStackTrace();
+        } catch (NullPointerException e) {
+            //e.printStackTrace();
+            System.out.println("连接数据库失败！");
+            return false;
+        }catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println("保存数据失败！");
             return false;
         } finally {
         }
+    }
+
+    /**
+     * Created with haibin
+     * 获取新闻内容
+     **/
+    public static ArrayList<WeixinContent> SelectWeixin(){
+        ArrayList<WeixinContent> arrayList = new ArrayList<WeixinContent>();
+        try {
+            Statement statement = conn.createStatement();
+            String sql = "SELECT * FROM weixin_hotnews WHERE datetime = '" + GetDate() +"'";
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()){
+                WeixinContent weixinContent = new WeixinContent();
+
+                weixinContent.setContent(resultSet.getString("content"));
+                weixinContent.setLink(resultSet.getString("link"));
+
+                arrayList.add(weixinContent);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        return  arrayList;
     }
 }

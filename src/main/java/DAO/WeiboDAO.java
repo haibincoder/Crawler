@@ -43,8 +43,13 @@ public class WeiboDAO {
 
             return true;
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NullPointerException e) {
+            //e.printStackTrace();
+            System.out.println("连接数据库失败！");
+            return false;
+        }catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println("保存数据失败！");
             return false;
         }
     }

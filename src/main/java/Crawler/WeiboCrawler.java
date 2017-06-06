@@ -51,19 +51,22 @@ public class WeiboCrawler extends BreadthCrawler {
         for (Element weibo : weibos) {
             Elements content = weibo.select("span.ctt");
 
+            if(weibo.text().length() < 20)
+                continue;
+
             System.out.println("第" + pageNum + "页\t" + weibo.text());
             WeiboContent weiboContent = new WeiboContent();
 
             //将emoji表情转换为*
-            if(content.text().length() > 1) {
-                weiboContent.setContent(filterEmoji(content.text()));
 
-                //System.out.println("-------------href：" + weibo.select("a").eq(2).attr("href") + "-------------");
-                weiboContent.setLink(weibo.select("a").eq(2).attr("href"));
-                System.out.println("--------content：" + content.text());
+            weiboContent.setContent(filterEmoji(content.text()));
 
-                arrayList.add(weiboContent);
-            }
+            //System.out.println("-------------href：" + weibo.select("a").eq(2).attr("href") + "-------------");
+            weiboContent.setLink(weibo.select("a").eq(2).attr("href"));
+            System.out.println("--------content：" + content.text());
+
+            arrayList.add(weiboContent);
+
         }
 
         if(InsertWeibo(arrayList)){
@@ -87,6 +90,7 @@ public class WeiboCrawler extends BreadthCrawler {
         for(String s : arrayList){
             crawler.addSeed(new CrawlDatum("http://weibo.cn/" + s + "?vt=4&page=" + 1)
                    .meta("pageNum", 1 + ""));
+
             System.out.println("---------------finish -> " + s +"--------------------");
             Thread.sleep(3);
         }
